@@ -120,8 +120,8 @@ class Tetromino:
         pass
 
 
-    def rotate(self):
-        pivot_pos = self.blocks[0].pos
+    def rotate(self, index=0):
+        pivot_pos = self.blocks[index].pos
         new_block_positions = [block.rotate(pivot_pos) for block in self.blocks]
 
         if self.is_collide(new_block_positions):
@@ -133,6 +133,10 @@ class Tetromino:
         if not self.is_collide(new_block_positions):
             for i, block in enumerate(self.blocks):
                 block.pos = new_block_positions[i]
+                pass
+            pass
+        elif index < 4:
+            self.rotate(index+1)
 
 
         
