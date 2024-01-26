@@ -28,9 +28,9 @@ INTERVAL_BETWEEN_TETROMINOS = 200
 LEVEL_SPEED = {
     1: ANIM_TIME_INTERVAL,
     2: 130,
-    3: 100,
-    4: 80,
-    5: 65,
+    3: 110,
+    4: 90,
+    5: 75,
     6: 50,
     7: 40
 }
