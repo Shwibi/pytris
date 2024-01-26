@@ -218,8 +218,10 @@ class Tetris:
     def draw_grid(self):
         for x in range(FIELD_W):
             for y in range(FIELD_H):
-                pg.draw.rect(self.app.screen, (85, 85, 85),
-                             (x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE), 1)
+                # pg.draw.rect(self.app.screen, (85, 85, 85),
+                #              (x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE), 1)
+                pg.draw.circle(self.app.screen, GRID_DOT_COLOR,
+                             (x * TILE_SIZE, y * TILE_SIZE), GRID_DOT_SIZE)
     
     def update(self):
         trigger = [self.app.anim_trigger, self.app.fast_anim_trigger][self.speed_up]
