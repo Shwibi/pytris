@@ -20,7 +20,7 @@ DELAY_BETWEEN_TETROMINOS = 50 # time between block placed and next tetromino
 LR_HI_FACTOR = 1.5
 LEFT_RIGHT_HOLD_INTERVAL = math.floor(ANIM_TIME_INTERVAL / LR_HI_FACTOR) # time between movements of blocks to left/right if left/right keydown pressed
 # SPEED_FACTOR = 1.3
-SPEED_UP_EVERY = 1000
+SPEED_UP_EVERY = 2000
 HARD_SKIP_INTERVAL = 1 # seconds
 
 INTERVAL_BETWEEN_TETROMINOS = 200
