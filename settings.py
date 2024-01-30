@@ -15,12 +15,12 @@ MUSIC_PATH = 'assets/songs'
 
 ANIM_TIME_INTERVAL = 175 # milliseconds
 FAST_ANIM_TIME_INTERVAL = 40 # milliseconds
-GAME_END_TIME_INTERVAL = 300 # milliseconds
+GAME_END_TIME_INTERVAL = 400 # milliseconds
 DELAY_BETWEEN_TETROMINOS = 50 # time between block placed and next tetromino
 LR_HI_FACTOR = 1.5
 LEFT_RIGHT_HOLD_INTERVAL = math.floor(ANIM_TIME_INTERVAL / LR_HI_FACTOR) # time between movements of blocks to left/right if left/right keydown pressed
 # SPEED_FACTOR = 1.3
-SPEED_UP_EVERY = 2000
+SPEED_UP_EVERY = 10000
 HARD_SKIP_INTERVAL = 1 # seconds
 
 INTERVAL_BETWEEN_TETROMINOS = 200
@@ -37,7 +37,7 @@ LEVEL_SPEED = {
 
 POINTS_PER_LINES = {0: 0, 1: 100, 2: 300, 3: 700, 4: 1500, 5: 2500, 6: 4000}
 
-TILE_SIZE = 40
+TILE_SIZE = 28
 FIELD_SIZE = FIELD_W, FIELD_H = 10, 20
 FIELD_RES = FIELD_W * TILE_SIZE, FIELD_H * TILE_SIZE
 GRID_DOT_SIZE = 2

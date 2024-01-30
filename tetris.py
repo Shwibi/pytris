@@ -53,6 +53,10 @@ class Tetris:
         self.projection_tetromino = Tetromino(self, current=False, on_hold=False, is_projection=True)
 
         self.can_hard_skip = True
+
+        self.is_left_held_down = False
+        self.is_right_held_down = False
+        self.is_holdkey_held_down = False
         pass
 
     def get_score(self):
@@ -141,6 +145,7 @@ class Tetris:
         return final_positions
     
     def hard_skip(self):
+        # pass
         if self.can_hard_skip:
             final_positions = self.get_final_position()
             if final_positions in [[block.pos for block in self.tetromino.blocks], [block.pos + MOVE_DIRECTIONS['down'] for block in self.tetromino.blocks]]:
@@ -154,13 +159,17 @@ class Tetris:
 
     def control(self, pressed_key):
         if pressed_key == pg.K_LEFT:
+            self.app.hold = True
+            self.is_left_held_down = True
+            self.control_up(pg.K_RIGHT, holdstate=True)
             self.tetromino.move(direction='left')
             pg.time.set_timer(self.left_user_event, self.left_right_hold_interval)
-            self.control_up(pg.K_RIGHT)
         elif pressed_key == pg.K_RIGHT:
+            self.app.hold = True
+            self.is_right_held_down = True
+            self.control_up(pg.K_LEFT, holdstate=True)
             self.tetromino.move(direction='right')
             pg.time.set_timer(self.right_user_event, self.left_right_hold_interval)
-            self.control_up(pg.K_LEFT)
         elif pressed_key == pg.K_UP:
             self.tetromino.rotate()
         elif pressed_key == pg.K_DOWN:
@@ -170,6 +179,7 @@ class Tetris:
         elif pressed_key == pg.K_SPACE:
             self.hard_skip()
         elif pressed_key == pg.K_z:
+            self.is_holdkey_held_down = True
             if self.app.canHold:
                 self.app.hold = True
                 pass
@@ -204,15 +214,23 @@ class Tetris:
             self.hold_tetromino.redraw(small=True)
             pass
 
-    def control_up(self, pressed_key):
+    def control_up(self, pressed_key, holdstate=False):
         if pressed_key == pg.K_LEFT:
             pg.time.set_timer(self.left_user_event, 0)
+            if not holdstate:
+                self.is_left_held_down = False
+
         elif pressed_key == pg.K_RIGHT:
             pg.time.set_timer(self.right_user_event, 0)
-        elif pressed_key == pg.K_SPACE:
+            if not holdstate:
+                self.is_right_held_down = False
+        elif pressed_key == pg.K_z:
+            self.is_holdkey_held_down = False
             self.app.hold = False
         elif pressed_key == pg.K_DOWN:
             self.speed_up = False
+        if not self.is_left_held_down and not self.is_right_held_down and not self.is_holdkey_held_down:
+            self.app.hold = holdstate
     
 
     def draw_grid(self):
